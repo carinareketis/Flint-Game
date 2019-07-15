@@ -16,15 +16,15 @@ class Scene1 extends Phaser.Scene{
 
     preload ()
     {
-        this.load.image('space', 'src/assets/space.png');
+        this.load.image('sky', 'src/assets/sky.png');
         this.load.image('ground', 'src/assets/platform.png');
         this.load.image('star', 'src/assets/star.png');
         this.load.image('bomb', 'src/assets/bomb.png');
-        this.load.spritesheet('flint', 'src/assets/flint.png', { frameWidth: 32, frameHeight: 48 });
+        this.load.spritesheet('dude', 'src/assets/dude.png', { frameWidth: 32, frameHeight: 48 });
     }
 
     create (){
-        this.add.image(400, 300, 'space');
+        this.add.image(400, 300, 'sky');
 
         this.platforms = this.physics.add.staticGroup();
 
@@ -34,14 +34,14 @@ class Scene1 extends Phaser.Scene{
         this.platforms.create(50, 250, 'ground');
         this.platforms.create(750, 220, 'ground');
 
-        this.player = this.physics.add.sprite(100, 450, 'flint');
+        this.player = this.physics.add.sprite(100, 450, 'dude');
 
         this.player.setBounce(0.2);
         this.player.setCollideWorldBounds(true);
 
         this.anims.create({
             key: 'left',
-            frames: this.anims.generateFrameNumbers('flint', 
+            frames: this.anims.generateFrameNumbers('dude', 
                 { start: 0, end: 3 }),
             frameRate: 10,
             repeat: -1
@@ -49,13 +49,13 @@ class Scene1 extends Phaser.Scene{
 
         this.anims.create({
             key: 'turn',
-            frames: [ { key: 'flint', frame: 4 } ],
+            frames: [ { key: 'dude', frame: 4 } ],
             frameRate: 20
         });
 
         this.anims.create({
             key: 'right',
-            frames: this.anims.generateFrameNumbers('flint', 
+            frames: this.anims.generateFrameNumbers('dude', 
             { start: 5, end: 8 }),
             frameRate: 10,
             repeat: -1
@@ -76,8 +76,8 @@ class Scene1 extends Phaser.Scene{
         this.bombs = this.physics.add.group();
 
 
-        this.scoreText = this.add.text(16, 16, 'Scene1 | score: 0', 
-        { fontSize: '32px', fill: '#000' });
+        this.scoreText = this.add.text(16, 16, 'Score: 0', 
+        { fontSize: '32px', fill: '#ffffff' });
 
         this.cursors = this.input.keyboard.createCursorKeys();
 
@@ -120,19 +120,36 @@ class Scene1 extends Phaser.Scene{
     {
         star.disableBody(true, true);
         this.score += 10;
-        this.scoreText.setText('Scene1 | score: ' + this.score);
+        this.scoreText.setText('Score: ' + this.score);
 
         if (this.stars.countActive(true) === 0)
         {
-            this.scene.start('Scene2');
+            //  A new batch of stars to collect
+            this.stars.children.iterate(function (child) {
+
+                child.enableBody(true, child.x, 0, true, true);
+
+            });
+
+            let x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+            let bomb = this.bombs.create(x, 16, 'bomb');
+            bomb.setBounce(1);
+            bomb.setCollideWorldBounds(true);
+            bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+            bomb.allowGravity = false;
+
         }
     }
 
     hitBomb (player, bomb)
     {
         this.physics.pause();
+
         this.player.setTint(0xff0000);
+
         this.player.anims.play('turn');
+
         this.gameOver = true;
     }
 }
