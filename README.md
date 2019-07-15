@@ -4,6 +4,12 @@ Ajude Flint a resgatar as estrelas do universo.
 
 ![Flint Game](https://github.com/carinareketis/Flint-Game/blob/master/src/assets/apresentation.png)
 
+## Como jogar
+
+Utilize as seguintes setas do seu teclado para movimentar o Flint. 
+
+![Control](https://github.com/carinareketis/Flint-Game/blob/master/src/assets/control.png)
+
 ## Processo de desenvolvimento
 
 O desafio consiste em criar um jogo utilizando o framework Phaser:
