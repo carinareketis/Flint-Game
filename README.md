@@ -2,7 +2,7 @@
 
 Ajude Flint a resgatar as estrelas do universo. 
 
-![Flint Game](https://github.com/carinareketis/freelancer/blob/master/freelancer-pagina-final.png)
+![Flint Game](https://github.com/carinareketis/Flint-Game/blob/master/src/assets/apresentation.png)
 
 ## Processo de desenvolvimento
 
