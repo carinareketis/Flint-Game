@@ -1,6 +1,6 @@
 ## Flint Game
 
-Ajude Flint a resgatar as estrelas do universo. 
+Ajude Flint a resgatar as estrelas da Galáxia. 
 
 ![Flint Game](https://github.com/carinareketis/Flint-Game/blob/master/src/assets/apresentation.png)
 
@@ -28,7 +28,7 @@ O desafio consiste em criar um jogo utilizando o framework Phaser:
 
 * Controle do player com o teclado.
 
-*  Criação do grupo dinâmico de física para estrelas.
+* Criação do grupo dinâmico de física para estrelas.
 
 * Inserir pontuação.
 
@@ -41,3 +41,15 @@ O desafio consiste em criar um jogo utilizando o framework Phaser:
 ## Tecnologias utilizadas
 
 * Framework Phaser, HTML, CSS, JavaScript.
+
+## Próximas implementações
+
+* Criar tela Game Over.
+
+* Inserir botão restart.
+
+* Opção de atirar contra seus oponentes.
+
+* Limitar quantidade de tiros.
+
+* Marcador de nível na tela.
